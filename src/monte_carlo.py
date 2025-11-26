@@ -67,18 +67,18 @@ class MonteCarloAgent:
         
         for step in range(max_steps):
             if render:
-                self.env.render(0.1)
+                self.env.render(0.01)
             
             action, action_idx = self.select_action(state)
             next_state, reward, done, _ = self.env.step(action)
             
             episode.append((state, action_idx, reward))
             
-            if done:
-                if render:
-                    self.env.render()
-                break
-            
+            # if done:
+            #     if render:
+            #         self.env.render()
+            #     break
+            #
             state = next_state
         
         return episode
@@ -104,7 +104,7 @@ class MonteCarloAgent:
             else:
                 self.policy[state_idx, a] = self.epsilon / num_actions
     
-    def train(self, num_episodes=1000, method='every_visit', verbose=True, 
+    def train(self, num_episodes=1000, max_steps=1000, method='every_visit', verbose=True, 
               render_interval=None, render_last=False):
         """
         Monte Carlo ε-greedy algorithm
@@ -127,7 +127,7 @@ class MonteCarloAgent:
                 should_render = True
             
             # Episode generation
-            episode = self.generate_episode(render=should_render)
+            episode = self.generate_episode(max_steps, render=should_render)
             
             # Track total reward for this episode
             total_reward = sum([r for _, _, r in episode])
@@ -170,6 +170,7 @@ class MonteCarloAgent:
             if verbose and (ep + 1) % 100 == 0:
                 avg_reward = np.mean(episode_rewards[-100:])
                 avg_length = np.mean([len(self.generate_episode()) for _ in range(10)])
+                
                 print(f"Episode {ep + 1}/{num_episodes}, Avg Reward: {avg_reward:.2f}, Avg Length: {avg_length:.1f}")
         
         return episode_rewards

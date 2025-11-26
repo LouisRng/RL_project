@@ -15,9 +15,10 @@ if __name__ == "__main__":
     agent.train(
         num_episodes=1, 
         method='first_visit',
+        max_steps=100,
         verbose=True,
-        render_interval=1,  # 每100个episode可视化一次
-        render_last=True      # 最后一个episode也可视化
+        render_interval=1,  
+        render_last=True,
     )
     
     
@@ -26,6 +27,7 @@ if __name__ == "__main__":
     state_values = agent.get_state_values()
     
     # Visualize learned policy
+    
     env.reset()
     env.render()
     env.add_policy(policy_matrix)

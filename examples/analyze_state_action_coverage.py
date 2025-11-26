@@ -5,11 +5,14 @@ from src.monte_carlo import MonteCarloAgent
 import numpy as np
 import matplotlib.pyplot as plt
 
-def analyze_episode(env, epsilon, max_steps):
+def analyze_episode(env, epsilon, max_steps, train_first=True):
     """生成一个episode并统计状态-动作对的访问次数"""
     agent = MonteCarloAgent(env, epsilon=epsilon, gamma=0.9)
     
-    # 统计每个状态-动作对的访问次数
+    # must train first to populate the Q-table
+    if train_first:
+        agent.train(num_episodes=1000, method='first_visit', verbose=False)
+    
     visit_counts = np.zeros((env.num_states, len(env.action_space)))
     
     state, _ = env.reset()
@@ -21,10 +24,11 @@ def analyze_episode(env, epsilon, max_steps):
         visit_counts[state_idx, action_idx] += 1
         
         state = next_state
+        
+        # if done:
+        #     state, _ = env.reset()
     
-    # 展平为一维数组
-    visit_counts_flat = visit_counts.flatten()
-    return visit_counts_flat
+    return visit_counts.flatten()
 
 def plot_coverage(visit_counts, epsilon, max_steps):
     """绘制状态-动作对访问次数的散点图"""
@@ -46,7 +50,7 @@ if __name__ == "__main__":
     env = GridWorld()
     
     # 测试参数
-    epsilon_values = [1.0, 0.5, 0]
+    epsilon_values = [1.0, 0.5]
     step_values = [100, 1000, 10000, 1000000]
     
     for epsilon in epsilon_values:

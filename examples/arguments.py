@@ -24,7 +24,7 @@ parser.add_argument("--forbidden-states", type=lambda x: literal_eval(x), defaul
 parser.add_argument("--reward-target", type=float, default=1)
 
 # specify the reward when entering into forbidden area
-parser.add_argument("--reward-forbidden", type=float, default=-2)
+parser.add_argument("--reward-forbidden", type=float, default=-10)
 
 # specify the reward when hitting the wall
 parser.add_argument("--reward-wall", type=float, default=-1)
@@ -49,7 +49,7 @@ parser.add_argument("--mc-model-path", type=str, default='monte_carlo_model.pkl'
 ## ==================== Advanced Settings ====================
 parser.add_argument("--action-space", type=lambda x: literal_eval(x), default=[(0, 1), (1, 0), (0, -1), (-1, 0), (0, 0)])  # down, right, up, left, stay           
 parser.add_argument("--debug", type=lambda x: x.lower() in ['true', '1', 'yes'], default=False)
-parser.add_argument("--animation-interval", type=float, default=0.1)
+parser.add_argument("--animation-interval", type=float, default=0.01)
 
 parser.add_argument("--save-graphics", type=lambda x: x.lower() in ['true', '1', 'yes'], default=False)
 ## ==================== End of Advanced settings ====================
