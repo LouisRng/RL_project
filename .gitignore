@@ -1,0 +1,14 @@
+# ignore output images
+*.png
+
+# ignore all pycache files
+__pycache__/
+
+# ignore pdf files
+*.pdf
+
+# ignore DS_Store files
+.DS_Store
+
+# ignore pkl files
+*.pkl
