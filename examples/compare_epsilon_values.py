@@ -5,7 +5,7 @@ from src.monte_carlo import MonteCarloAgent
 import numpy as np
 import matplotlib.pyplot as plt
 
-def train_agent(epsilon, num_episodes=500):
+def train_agent(epsilon, num_episodes=500, max_steps=1000):
     """训练agent并返回策略和状态值"""
     env = GridWorld()
     agent = MonteCarloAgent(env, epsilon=epsilon, gamma=0.9)
@@ -13,6 +13,7 @@ def train_agent(epsilon, num_episodes=500):
     print(f"Training ε={epsilon}...")
     agent.train(
         num_episodes=num_episodes, 
+        max_steps=max_steps,
         method='first_visit',
         verbose=True,
         render_last=False  
@@ -45,7 +46,7 @@ if __name__ == "__main__":
     env = GridWorld()
     
     for eps in epsilon_values:
-        policy, values = train_agent(eps, num_episodes=5000)
+        policy, values = train_agent(eps, num_episodes=5000, max_steps=30)
         print_state_values(eps, values, env.env_size)
         visualize_policy(eps, policy, values)
     

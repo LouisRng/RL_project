@@ -7,7 +7,7 @@ import pickle
 import os
 
 class MonteCarloAgent:
-    def __init__(self, env, epsilon=0, gamma=0.95):
+    def __init__(self, env, epsilon=0.1, gamma=0.95):
         """
         Initialize Monte Carlo ε-greedy agent
         
@@ -74,11 +74,11 @@ class MonteCarloAgent:
             
             episode.append((state, action_idx, reward))
             
-            # if done:
-            #     if render:
-            #         self.env.render()
-            #     break
-            #
+            if done:
+                if render:
+                    self.env.render()
+                break
+
             state = next_state
         
         return episode

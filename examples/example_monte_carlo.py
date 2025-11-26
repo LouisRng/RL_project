@@ -9,16 +9,16 @@ if __name__ == "__main__":
     env = GridWorld()
     
     # Create Monte Carlo agent
-    agent = MonteCarloAgent(env, epsilon=0, gamma=0.9)
+    agent = MonteCarloAgent(env, epsilon=0.1, gamma=0.9)
         
     # Train with periodic visualization
     agent.train(
         num_episodes=1, 
         method='first_visit',
-        max_steps=100,
+        max_steps=10000,
         verbose=True,
-        render_interval=1,  
-        render_last=True,
+        # render_interval=1,  
+        # render_last=True,
     )
     
     
@@ -28,7 +28,7 @@ if __name__ == "__main__":
     
     # Visualize learned policy
     
-    env.reset()
+    # env.reset()
     env.render()
     env.add_policy(policy_matrix)
     env.add_state_values(state_values)
