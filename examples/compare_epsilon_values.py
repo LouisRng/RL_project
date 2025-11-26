@@ -46,7 +46,7 @@ if __name__ == "__main__":
     env = GridWorld()
     
     for eps in epsilon_values:
-        policy, values = train_agent(eps, num_episodes=5000, max_steps=100)
+        policy, values = train_agent(eps, num_episodes=10000, max_steps=200)
         print_state_values(eps, values, env.env_size)
         visualize_policy(eps, policy, values)
     
