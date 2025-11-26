@@ -74,10 +74,10 @@ class MonteCarloAgent:
             
             episode.append((state, action_idx, reward))
             
-            if done:
-                if render:
-                    self.env.render()
-                break
+            # if done:
+            #     if render:
+            #         self.env.render()
+            #     break
 
             state = next_state
         
