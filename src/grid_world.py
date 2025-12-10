@@ -46,7 +46,7 @@ class GridWorld():
     def step(self, action):
         assert action in self.action_space, "Invalid action"
 
-        next_state, reward  = self._get_next_state_and_reward(self.agent_state, action)
+        next_state, reward = self._get_next_state_and_reward(self.agent_state, action)
         done = self._is_done(next_state)
 
         x_store = next_state[0] + 0.03 * np.random.randn()
