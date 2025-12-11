@@ -24,7 +24,7 @@ parser.add_argument("--forbidden-states", type=lambda x: literal_eval(x), defaul
 parser.add_argument("--reward-target", type=float, default=1)
 
 # specify the reward when entering into forbidden area
-parser.add_argument("--reward-forbidden", type=float, default=-10)
+parser.add_argument("--reward-forbidden", type=float, default=-1)
 
 # specify the reward when hitting the wall
 parser.add_argument("--reward-wall", type=float, default=-1)

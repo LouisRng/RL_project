@@ -10,7 +10,7 @@ if __name__ == "__main__":
     
     env.render(0.01)
     
-    for t in range(1000):
+    for t in range(100):
         env.render(0.01)
         action = random.choice(env.action_space)
         next_state, reward, done, info = env.step(action)
