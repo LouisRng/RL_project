@@ -32,7 +32,7 @@ def visualize_episode(env, policy, values, epsilon, filename):
 
 def main():
     epsilons = [1.0, 0.5, 0.1]
-    num_steps = 100_000
+    num_steps = 100000
     gamma = 0.9
     alpha = 0.1
 
